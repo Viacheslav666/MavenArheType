@@ -1,9 +1,18 @@
 import java.sql.*;
 public class Application {
     public static void main(String[] args) {
+        EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+        System.out.println(employeeDAO.getAllEmployee());
+        employeeDAO.getAllEmployee().forEach(System.out::println);
+        employeeDAO.getEmployee(1);
+        employeeDAO.updateEmployee(2);
+        employeeDAO.deleteEmployee(3);
+
+
         final String user = "postgres";
         final String password = "Glad917746.";
         final String URL = "jdbc:postgresql://localhost:5432/skyPro";
+
         try {
             final Connection connection = DriverManager.getConnection(URL, user, password);
             PreparedStatement statement = connection.prepareStatement("SELECT  * FROM employee INNER JOIN city ON employee.city_id = city.city_id WHERE id = 1");
